@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pojok Literasi Digital - Lentera Baca</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'edu-blue': { DEFAULT: '#1E88E5', 50: '#E3F2FD', 100: '#BBDEFB', 600: '#1E88E5', 700: '#1565C0', 800: '#0D47A1' },
+                        'edu-green': { DEFAULT: '#4CAF50', 50: '#E8F5E9', 100: '#C8E6C9', 600: '#4CAF50', 700: '#388E3C' },
+                        'edu-amber': { DEFAULT: '#FFC107', 50: '#FFF8E1', 100: '#FFECB3', 500: '#FFC107', 600: '#FFB300' },
+                        'edu-purple': { DEFAULT: '#8E24AA', 50: '#F3E5F5', 600: '#8E24AA' }
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'nunito': ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins & Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #F8FAFC;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom Scrollbar for embedded Google Sites feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94A3B8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748B;
+        }
+        /* Simple Particle / Celebration animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+        /* Pulse Badge Animation */
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.5); }
+            50% { box-shadow: 0 0 12px 4px rgba(255, 193, 7, 0.7); }
+        }
+        .badge-glow {
+            animation: badgeGlow 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-edu-amber-100 selection:text-slate-900">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection('hero')">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-edu-blue-600 to-sky-400 flex items-center justify-center text-white shadow-md shadow-blue-200 transform hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-book-open-reader text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-edu-blue-700 via-sky-600 to-edu-green-600 bg-clip-text text-transparent font-heading">
+                            Pojok Literasi Digital
+                        </span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-edu-amber-50 text-edu-amber-600 border border-edu-amber-100">
+                                <i class="fa-solid fa-lightbulb text-[10px] mr-1"></i>Lentera Baca
+                            </span>
+                            <span class="text-xs text-slate-400 hidden sm:inline">• Media Belajar Siswa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#hero" class="px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:text-edu-blue-600 hover:bg-slate-100 transition-colors">
+                        <i class="fa-solid fa-house mr-1.5 text-edu-blue-600"></i>Beranda
+                    </a>
+                    <a href="#koleksi" class="px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:text-edu-blue-600 hover:bg-slate-100 transition-colors">
+                        <i class="fa-solid fa-book mr-1.5 text-edu-green-600"></i>Koleksi Bacaan
+                    </a>
+                    <a href="#jurnal" class="px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:text-edu-blue-600 hover:bg-slate-100 transition-colors">
+                        <i class="fa-solid fa-pen-to-square mr-1.5 text-edu-amber-500"></i>Jurnal Baca
+                    </a>
+                    <a href="#papan-karya" class="px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:text-edu-blue-600 hover:bg-slate-100 transition-colors">
+                        <i class="fa-solid fa-trophy mr-1.5 text-edu-purple-600"></i>Bintang Literasi
+                    </a>
+                </nav>
+
+                <!-- User Points Counter & Mobile Menu Toggle -->
+                <div class="flex items-center space-x-3">
+                    <div id="user-points-badge" class="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-edu-amber-500 text-white px-3.5 py-1.5 rounded-full shadow-sm text-xs sm:text-sm font-extrabold cursor-pointer hover:scale-105 transition-transform" onclick="scrollToSection('papan-karya')" title="Poin Literasi Anda">
+                        <i class="fa-solid fa-star text-amber-200 animate-spin" style="animation-duration: 8s;"></i>
+                        <span id="user-points-val">150 Poin</span>
+                    </div>
+
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none" aria-label="Buka Menu">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-base font-bold text-slate-700 hover:bg-edu-blue-50 hover:text-edu-blue-600">
+                <i class="fa-solid fa-house w-6 text-edu-blue-600"></i>Beranda
+            </a>
+            <a href="#koleksi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-base font-bold text-slate-700 hover:bg-edu-green-50 hover:text-edu-green-600">
+                <i class="fa-solid fa-book w-6 text-edu-green-600"></i>Koleksi Bacaan
+            </a>
+            <a href="#jurnal" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-base font-bold text-slate-700 hover:bg-amber-50 hover:text-edu-amber-600">
+                <i class="fa-solid fa-pen-to-square w-6 text-edu-amber-500"></i>Jurnal Baca Interaktif
+            </a>
+            <a href="#papan-karya" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-base font-bold text-slate-700 hover:bg-purple-50 hover:text-edu-purple-600">
+                <i class="fa-solid fa-trophy w-6 text-edu-purple-600"></i>Bintang Literasi & Juara
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative overflow-hidden bg-gradient-to-b from-blue-50 via-sky-50/50 to-white pt-10 pb-16 lg:pt-16 lg:pb-24">
+            <!-- Decorative Background Elements -->
+            <div class="absolute top-10 left-5 w-24 h-24 bg-amber-300/30 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-40 h-40 bg-edu-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Hero Text Content -->
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white border border-sky-200 shadow-sm text-xs sm:text-sm font-bold text-edu-blue-700 animate-float">
+                            <span class="w-2.5 h-2.5 rounded-full bg-edu-green-600 animate-pulse"></span>
+                            <span>Selamat Datang di Ruang Membaca Interaktif! 🚀</span>
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight font-heading">
+                            Jelajahi Dunia Lewat <span class="bg-gradient-to-r from-edu-blue-600 via-sky-500 to-edu-green-600 bg-clip-text text-transparent">Membaca</span>
+                        </h1>
+                        
+                        <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                            Temukan cerita seru, pengetahuan sains unik, dan komik edukasi. Tulis pesan moralmu dan kumpulkan <strong class="text-amber-600 font-bold">Bintang Literasi</strong> setiap hari!
+                        </p>
+
+                        <!-- Search Bar -->
+                        <div class="max-w-xl mx-auto lg:mx-0 pt-2">
+                            <div class="relative flex items-center bg-white rounded-2xl p-2 shadow-lg shadow-sky-100 border-2 border-sky-200 focus-within:border-edu-blue-600 transition-all">
+                                <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg ml-3 mr-2"></i>
+                                <input id="search-input" type="text" placeholder="Cari judul buku, topik sains, atau cerita rakyat..." class="w-full bg-transparent border-none text-slate-800 placeholder-slate-400 font-medium focus:outline-none text-sm sm:text-base" onkeyup="handleSearch()">
+                                <button onclick="handleSearch()" class="bg-edu-blue-600 hover:bg-edu-blue-700 text-white px-5 py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center space-x-2 shrink-0">
+                                    <span>Cari</span>
+                                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-3 text-xs text-slate-500">
+                                <span class="font-bold text-slate-600"><i class="fa-solid fa-fire text-amber-500 mr-1"></i>Populer:</span>
+                                <button onclick="quickSearch('Kancil')" class="hover:text-edu-blue-600 hover:underline">Si Kancil</button>•
+                                <button onclick="quickSearch('Sains')" class="hover:text-edu-blue-600 hover:underline">Tata Surya</button>•
+                                <button onclick="quickSearch('Komik')" class="hover:text-edu-blue-600 hover:underline">Komik Sampah</button>•
+                                <button onclick="quickSearch('Dongeng')" class="hover:text-edu-blue-600 hover:underline">Danau Toba</button>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#koleksi" class="bg-edu-green-600 hover:bg-edu-green-700 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-lg shadow-green-200 hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-book-open text-lg"></i>
+                                <span>Mulai Membaca</span>
+                            </a>
+                            <a href="#jurnal" class="bg-white hover:bg-amber-50 text-slate-800 font-extrabold px-6 py-3.5 rounded-2xl border-2 border-amber-300 shadow-sm hover:border-amber-400 transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-pen-nib text-amber-500 text-lg"></i>
+                                <span>Isi Jurnal Baca</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card / Mascot Banner -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Card Base -->
+                            <div class="bg-gradient-to-br from-white to-sky-50 rounded-3xl p-6 shadow-2xl border border-sky-100 relative z-10 text-center">
+                                <div class="w-24 h-24 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center text-4xl shadow-inner animate-bounce" style="animation-duration: 3s;">
+                                    🦉
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-800 font-heading">Halo, Sahabat Literasi!</h3>
+                                <p class="text-xs text-slate-500 mt-1 mb-4">Si Owi Si Burung Hantu siap memandu petualangan membacamu hari ini.</p>
+                                
+                                <!-- Quick Stats Box -->
+                                <div class="grid grid-cols-3 gap-2 bg-white rounded-2xl p-3 border border-slate-100 shadow-sm text-center">
+                                    <div class="p-1">
+                                        <div class="text-lg font-black text-edu-blue-600" id="stat-books-count">24+</div>
+                                        <div class="text-[10px] font-bold text-slate-400 uppercase">Buku Seru</div>
+                                    </div>
+                                    <div class="p-1 border-x border-slate-100">
+                                        <div class="text-lg font-black text-edu-green-600" id="stat-readers-count">140+</div>
+                                        <div class="text-[10px] font-bold text-slate-400 uppercase">Siswa Aktif</div>
+                                    </div>
+                                    <div class="p-1">
+                                        <div class="text-lg font-black text-edu-amber-500" id="stat-reviews-count">85+</div>
+                                        <div class="text-[10px] font-bold text-slate-400 uppercase">Resensi</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-3 rounded-xl bg-sky-50 border border-sky-100 flex items-center space-x-3 text-left">
+                                    <div class="w-8 h-8 rounded-lg bg-sky-500 text-white flex items-center justify-center shrink-0 font-bold">
+                                        <i class="fa-solid fa-quote-left text-xs"></i>
+                                    </div>
+                                    <p class="text-xs text-slate-600 italic font-medium">
+                                        "Buku adalah jendela dunia. Kuncinya adalah hasrat untuk membaca."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- KOLEKSI BACAAN (DIGITAL LIBRARY) -->
+        <section id="koleksi" class="py-16 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Title -->
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-edu-green-50 text-edu-green-700 border border-edu-green-100 tracking-wider uppercase">
+                        Perpustakaan Digital
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2 font-heading">
+                        Pilih Bahan Bacaan Favoritmu
+                    </h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">
+                        Pilih genre yang kamu sukai. Klik tombol <span class="font-bold text-edu-blue-600">"Baca Sekarang"</span> untuk membuka halaman cerita interaktif.
+                    </p>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+                    <button onclick="filterCategory('all')" id="btn-cat-all" class="cat-btn active bg-edu-blue-600 text-white px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Semua (6)</span>
+                    </button>
+                    <button onclick="filterCategory('fiksi')" id="btn-cat-fiksi" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-dragon text-amber-500"></i>
+                        <span>Fiksi & Dongeng</span>
+                    </button>
+                    <button onclick="filterCategory('sains')" id="btn-cat-sains" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-flask text-edu-blue-500"></i>
+                        <span>Sains & Pengetahuan</span>
+                    </button>
+                    <button onclick="filterCategory('komik')" id="btn-cat-komik" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-masks-theater text-edu-green-500"></i>
+                        <span>Komik Edukasi</span>
+                    </button>
+                    <button onclick="filterCategory('media')" id="btn-cat-media" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-headphones text-purple-500"></i>
+                        <span>Audio / Video Dongeng</span>
+                    </button>
+                </div>
+
+                <!-- Book Cards Grid -->
+                <div id="book-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Books dynamically injected by JavaScript -->
+                </div>
+
+                <!-- Empty State Message -->
+                <div id="no-books-found" class="hidden text-center py-12">
+                    <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-3xl text-slate-400 mb-3">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-700 font-heading">Buku tidak ditemukan</h3>
+                    <p class="text-xs text-slate-500 mt-1">Coba gunakan kata kunci pencarian atau kategori lain.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- JURNAL BACA INTERAKTIF SECTION -->
+        <section id="jurnal" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Left: Form Explanation & Tips -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-edu-amber-100 text-amber-800 border border-amber-200 tracking-wider uppercase">
+                                Jurnal & Refleksi Baca
+                            </span>
+                            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 font-heading">
+                                Catat Pengalaman Membacamu!
+                            </h2>
+                            <p class="text-slate-600 mt-2 text-sm sm:text-base leading-relaxed">
+                                Setiap kali selesai membaca satu buku atau artikel, isilah jurnal ini. Dapatkan <strong class="text-amber-600">+50 Poin Literasi</strong> langsung ke akunmu!
+                            </p>
+                        </div>
+
+                        <!-- Info Card -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-4">
+                            <h3 class="text-base font-bold text-slate-800 flex items-center space-x-2 font-heading">
+                                <i class="fa-solid fa-circle-question text-edu-blue-600"></i>
+                                <span>Mengapa Mengisi Jurnal Baca?</span>
+                            </h3>
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+                                <li class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check-circle text-edu-green-600 mt-0.5"></i>
+                                    <span>Melatih kemampuan menyimpulkan dan berpikir kritis.</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check-circle text-edu-green-600 mt-0.5"></i>
+                                    <span>Mencatat nilai moral dan kebaikan untuk diterapkan sehari-hari.</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check-circle text-edu-green-600 mt-0.5"></i>
+                                    <span>Menampilkan karya ulasanmu di <strong class="text-slate-800">Papan Apresiasi Siswa</strong>.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Teacher / Google Sites Integration Note -->
+                        <div class="p-4 rounded-2xl bg-edu-blue-50 border border-edu-blue-100 text-xs text-edu-blue-800 flex items-start space-x-3">
+                            <i class="fa-solid fa-lightbulb text-lg text-edu-blue-600 shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong>Catatan untuk Guru:</strong> Jurnal ini terhubung secara interaktif di browser siswa. Jika ingin mengumpulkan data ke Google Sheets, Anda juga dapat menempelkan *Google Forms* bawaan sekolah pada bagian ini.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Form -->
+                    <div class="lg:col-span-7">
+                        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 relative">
+                            <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+                                <h3 class="text-lg font-extrabold text-slate-800 font-heading flex items-center space-x-2">
+                                    <i class="fa-solid fa-pen-nib text-edu-amber-500"></i>
+                                    <span>Formulir Refleksi Baca</span>
+                                </h3>
+                                <span class="text-xs font-bold text-slate-400">* Wajib diisi</span>
+                            </div>
+
+                            <form id="journal-form" onsubmit="handleJournalSubmit(event)" class="space-y-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <!-- Nama Siswa -->
+                                    <div>
+                                        <label for="student-name" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+                                            Nama Lengkap Siswa *
+                                        </label>
+                                        <input type="text" id="student-name" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-edu-blue-600 focus:border-edu-blue-600 text-sm font-medium transition-all">
+                                    </div>
+                                    <!-- Kelas -->
+                                    <div>
+                                        <label for="student-class" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+                                            Kelas *
+                                        </label>
+                                        <select id="student-class" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-edu-blue-600 focus:border-edu-blue-600 text-sm font-medium transition-all bg-white">
+                                            <option value="">-- Pilih Kelas --</option>
+                                            <option value="Kelas 1">Kelas 1 SD</option>
+                                            <option value="Kelas 2">Kelas 2 SD</option>
+                                            <option value="Kelas 3">Kelas 3 SD</option>
+                                            <option value="Kelas 4">Kelas 4 SD</option>
+                                            <option value="Kelas 5">Kelas 5 SD</option>
+                                            <option value="Kelas 6">Kelas 6 SD</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Judul Buku -->
+                                <div>
+                                    <label for="book-title-input" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+                                        Judul Buku / Cerita yang Dibaca *
+                                    </label>
+                                    <input type="text" id="book-title-input" required placeholder="Contoh: Petualangan Si Kancil Cerdik" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-edu-blue-600 focus:border-edu-blue-600 text-sm font-medium transition-all">
+                                </div>
+
+                                <!-- Ringkasan / Apa yang dibaca -->
+                                <div>
+                                    <label for="book-summary" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+                                        Ringkasan Singkat Cerita *
+                                    </label>
+                                    <textarea id="book-summary" rows="3" required placeholder="Tuliskan 2 - 3 kalimat singkat tentang jalan cerita yang kamu baca..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-edu-blue-600 focus:border-edu-blue-600 text-sm font-medium transition-all"></textarea>
+                                </div>
+
+                                <!-- Pesan Moral -->
+                                <div>
+                                    <label for="book-moral" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+                                        Pesan Moral / Hal Baik yang Dipelajari *
+                                    </label>
+                                    <input type="text" id="book-moral" required placeholder="Pelajaran positif apa yang bisa ditiru dalam kehidupan sehari-hari?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-edu-blue-600 focus:border-edu-blue-600 text-sm font-medium transition-all">
+                                </div>
+
+                                <!-- Rating Bintang Interaktif -->
+                                <div>
+                                    <label class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+                                        Berapa Rating Buku Ini Menurutmu? *
+                                    </label>
+                                    <div class="flex items-center space-x-2 pt-1">
+                                        <div id="star-rating-picker" class="flex space-x-1 text-2xl text-slate-300 cursor-pointer">
+                                            <i class="fa-solid fa-star transition-colors" data-rating="1" onclick="setRating(1)"></i>
+                                            <i class="fa-solid fa-star transition-colors" data-rating="2" onclick="setRating(2)"></i>
+                                            <i class="fa-solid fa-star transition-colors" data-rating="3" onclick="setRating(3)"></i>
+                                            <i class="fa-solid fa-star transition-colors" data-rating="4" onclick="setRating(4)"></i>
+                                            <i class="fa-solid fa-star transition-colors" data-rating="5" onclick="setRating(5)"></i>
+                                        </div>
+                                        <span id="rating-label" class="text-xs font-bold text-amber-600 ml-2">Pilih Bintang (5/5)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="w-full bg-gradient-to-r from-edu-green-600 to-emerald-600 hover:from-edu-green-700 hover:to-emerald-700 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-green-200 hover:shadow-xl transition-all flex items-center justify-center space-x-2 text-base">
+                                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                                    <span>Kirim Jurnal & Klaim +50 Poin!</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAPAN KARYA & BINTANG LITERASI (GAMIFICATION) -->
+        <section id="papan-karya" class="py-16 bg-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200 tracking-wider uppercase">
+                        Apresiasi & Prestasi
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2 font-heading">
+                        Bintang Literasi Bulan Ini 🏆
+                    </h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">
+                        Penghargaan bagi siswa-siswi yang paling rajin membaca dan menulis refleksi cerita.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Leaderboard Table -->
+                    <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+                        
+                        <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-700">
+                            <h3 class="text-lg font-bold font-heading flex items-center space-x-2">
+                                <i class="fa-solid fa-crown text-amber-400 text-xl"></i>
+                                <span>Papan Peringkat Pembaca</span>
+                            </h3>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/30">
+                                Top 4 Siswa
+                            </span>
+                        </div>
+
+                        <!-- Leaderboard List -->
+                        <div id="leaderboard-list" class="space-y-3">
+                            <!-- Injected by JS -->
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-700 text-center">
+                            <p class="text-xs text-slate-400">
+                                <i class="fa-solid fa-circle-info mr-1 text-amber-400"></i>
+                                Poin dihitung otomatis saat jurnal baca dikirimkan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Live Feed Reviews Gallery -->
+                    <div class="lg:col-span-7 bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800 font-heading flex items-center space-x-2">
+                                    <i class="fa-solid fa-comments text-edu-blue-600"></i>
+                                    <span>Ulasan Terbaru Siswa</span>
+                                </h3>
+                                <p class="text-xs text-slate-500">Pendapat jujur dari teman-temanmu setelah membaca</p>
+                            </div>
+                            <span class="text-xs font-extrabold text-edu-green-600 bg-edu-green-50 px-2.5 py-1 rounded-full border border-edu-green-100 flex items-center space-x-1">
+                                <span class="w-2 h-2 rounded-full bg-edu-green-600 animate-ping"></span>
+                                <span>Live Feed</span>
+                            </span>
+                        </div>
+
+                        <div id="reviews-feed" class="space-y-4 max-h-[420px] overflow-y-auto pr-1">
+                            <!-- Live Student Reviews dynamic content -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL PEMBACA BUKU (BOOK READER MODAL) -->
+    <div id="reader-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[90vh] border border-slate-200">
+            
+            <!-- Modal Header Toolbar -->
+            <div class="bg-slate-900 text-white p-4 sm:p-5 flex items-center justify-between shrink-0">
+                <div class="flex items-center space-x-3 truncate pr-2">
+                    <span id="modal-category-badge" class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-edu-blue-600 text-white shrink-0">
+                        Fiksi
+                    </span>
+                    <h3 id="modal-book-title" class="text-base sm:text-xl font-bold truncate font-heading">
+                        Judul Buku
+                    </h3>
+                </div>
+
+                <!-- Control Buttons: Text Scaling & Close -->
+                <div class="flex items-center space-x-2 shrink-0">
+                    <div class="bg-slate-800 rounded-xl p-1 flex items-center space-x-1 border border-slate-700">
+                        <button onclick="adjustFontSize(-2)" title="Kecilkan Teks" class="w-8 h-8 rounded-lg hover:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-300">
+                            A-
+                        </button>
+                        <span class="text-[10px] text-slate-500">|</span>
+                        <button onclick="adjustFontSize(2)" title="Besarkan Teks" class="w-8 h-8 rounded-lg hover:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-300">
+                            A+
+                        </button>
+                    </div>
+                    <button onclick="closeReaderModal()" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div id="modal-scroll-body" class="p-6 sm:p-8 overflow-y-auto space-y-6 text-slate-700 leading-relaxed">
+                <!-- Book Image Header inside modal -->
+                <div id="modal-cover-container" class="relative rounded-2xl overflow-hidden bg-slate-100 max-h-64 flex items-center justify-center">
+                    <img id="modal-book-cover" src="" alt="Cover Buku" class="w-full h-64 object-cover">
+                </div>
+
+                <!-- Book Metadata -->
+                <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 pb-4 border-b border-slate-100">
+                    <div><i class="fa-solid fa-user text-slate-400 mr-1"></i> Penulis: <strong id="modal-book-author" class="text-slate-700">Pengarang</strong></div>
+                    <div><i class="fa-solid fa-clock text-slate-400 mr-1"></i> Estimasi Baca: <strong id="modal-read-time" class="text-slate-700">3 Menit</strong></div>
+                </div>
+
+                <!-- Story Text Content Container -->
+                <div id="modal-text-content" class="text-base sm:text-lg space-y-4 font-medium transition-all">
+                    <!-- Text inserted dynamically -->
+                </div>
+            </div>
+
+            <!-- Modal Footer CTA -->
+            <div class="bg-slate-50 p-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+                <div class="text-xs text-slate-500 text-center sm:text-left">
+                    Selesai membaca? Jangan lupa isi jurnal untuk dapat poin!
+                </div>
+                <button onclick="finishReadingAndOpenJournal()" class="w-full sm:w-auto bg-edu-amber-500 hover:bg-edu-amber-600 text-slate-900 font-extrabold px-6 py-2.5 rounded-xl shadow transition-all flex items-center justify-center space-x-2 text-xs sm:text-sm">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span>Tandai Selesai & Isi Jurnal Baca</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SUCCESS CELEBRATION MODAL -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-amber-200 relative animate-bounce" style="animation-duration: 0.8s; animation-iteration-count: 1;">
+            <div class="w-20 h-20 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center text-4xl mx-auto mb-4 shadow-inner badge-glow">
+                🏆
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 font-heading">Luar Biasa! 🎉</h3>
+            <p class="text-sm text-slate-600 mt-2">
+                Jurnal baca kamu berhasil dikirim! Kamu mendapatkan:
+            </p>
+            <div class="my-4 py-2 px-4 bg-amber-50 rounded-xl border border-amber-200 inline-block text-lg font-black text-amber-600">
+                +50 Poin Literasi ⭐
+            </div>
+            <p class="text-xs text-slate-400 mb-6">
+                Ulasanmu sudah dipublikasikan di Papan Apresiasi.
+            </p>
+            <button onclick="closeSuccessModal()" class="w-full bg-edu-blue-600 hover:bg-edu-blue-700 text-white font-bold py-3 rounded-xl shadow transition-all">
+                Lanjutkan Membaca 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-edu-blue-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-book-open-reader text-xl"></i>
+                        </div>
+                        <span class="text-lg font-extrabold font-heading text-white">Pojok Literasi Digital</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+                        Platform media bacaan interaktif yang dikembangkan untuk mendukung kegiatan literasi sekolah, meningkatkan minat baca, dan membangun karakter siswa secara menyenangkan.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold font-heading text-slate-200 mb-3">Akses Cepat</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#hero" class="hover:text-amber-400 transition-colors">Beranda Utama</a></li>
+                        <li><a href="#koleksi" class="hover:text-amber-400 transition-colors">Perpustakaan Digital</a></li>
+                        <li><a href="#jurnal" class="hover:text-amber-400 transition-colors">Formulir Jurnal Baca</a></li>
+                        <li><a href="#papan-karya" class="hover:text-amber-400 transition-colors">Papan Bintang Literasi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold font-heading text-slate-200 mb-3">Panduan Google Sites</h4>
+                    <p class="text-xs text-slate-400 mb-2">
+                        Kompatibel 100% untuk disematkan di Google Sites sekolah.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono px-2.5 py-1 rounded bg-slate-800 text-edu-green-400 border border-slate-700">
+                        <i class="fa-solid fa-code mr-1"></i>Embed Code Ready
+                    </span>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <div>
+                    © 2026 <strong>Pojok Literasi Digital (Lentera Baca)</strong>. Hak Cipta Dilindungi.
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span>Dikembangkan untuk Pembelajaran Interaktif Siswa</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        // 1. DATABASE BUKU MOCK
+        const booksData = [
+            {
+                id: 1,
+                title: "Petualangan Si Kancil Cerdik & Kerbau",
+                category: "fiksi",
+                categoryLabel: "Fiksi & Dongeng",
+                badgeColor: "bg-amber-500",
+                author: "Dongeng Nusantara",
+                readTime: "3 Menit",
+                rating: 5,
+                cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
+                snippet: "Kisah cerdik Si Kancil yang membantu Pak Kerbau keluar dari jebakan dengan cara bijaksana tanpa kekerasan.",
+                content: `
+                    <p class="first-letter:text-4xl first-letter:font-extrabold first-letter:text-edu-blue-600 first-letter:float-left first-letter:mr-2">
+                        Pada suatu hari yang cerah di pinggir hutan belantara, Pak Kerbau sedang berjalan santai mencari rumput yang segar. Tiba-tiba, ia mendengar suara rintihan minta tolong dari balik semak-semak yang rimbun.
+                    </p>
+                    <p>
+                        Saat didekati, ternyata ada sebatang pohon besar yang tumbang dan menindih punggung Seekor Buaya. Buaya tersebut memohon iba kepada Pak Kerbau untuk menolong menggeser batang kayu tersebut.
+                    </p>
+                    <p class="p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-xl italic my-4 text-slate-800">
+                        "Pak Kerbau, tolong angkat kayu ini! Punggungku sakit sekali," ratap Buaya berpura-pura sedih.
+                    </p>
+                    <p>
+                        Kerbau yang baik hati langsung mengangkat kayu tersebut. Namun, setelah bebas, Buaya justru menggigit kaki Pak Kerbau! Tepat pada saat itu, Si Kancil melintas dan melihat kejadian tersebut. Dengan kecerdasannya, Kancil meminta Buaya dan Kerbau memperagakan kembali posisi awal agar ia bisa menilai secara adil.
+                    </p>
+                    <p>
+                        Begitu Buaya kembali tertindih kayu, Kancil dengan cepat mengajak Kerbau pergi meninggalkan Buaya yang serakah itu. 
+                    </p>
+                    <div class="p-4 bg-edu-green-50 rounded-2xl border border-edu-green-200 mt-6">
+                        <strong class="text-edu-green-800 block font-bold mb-1"><i class="fa-solid fa-star mr-1"></i>Pesan Moral:</strong>
+                        <p class="text-xs sm:text-sm text-slate-700">Tolong-menolonglah kepada sesama, tetapi kita harus selalu waspada terhadap orang yang berniat jahat dan tidak tahu terima kasih.</p>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Misteri Rahasia Tata Surya & Planet",
+                category: "sains",
+                categoryLabel: "Sains & Pengetahuan",
+                badgeColor: "bg-edu-blue-600",
+                author: "Sains Anak Nusantara",
+                readTime: "4 Menit",
+                rating: 5,
+                cover: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+                snippet: "Tahukah kamu mengapa planet Bumi satu-satunya yang bisa ditinggali manusia? Yuk, jelajahi angkasa luar!",
+                content: `
+                    <p class="first-letter:text-4xl first-letter:font-extrabold first-letter:text-edu-blue-600 first-letter:float-left first-letter:mr-2">
+                        Tata Surya kita adalah kumpulan benda langit yang terdiri atas sebuah bintang besar yang disebut <strong>Matahari</strong>, dan semua objek yang terikat oleh gaya gravitasinya.
+                    </p>
+                    <h4 class="text-base font-bold text-slate-800 mt-4 mb-2 font-heading">Delapan Planet Utama:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-slate-700 ml-2">
+                        <li><strong>Merkurius:</strong> Planet terdekat dengan Matahari dan paling panas.</li>
+                        <li><strong>Venus:</strong> Planet paling terang yang sering disebut Bintang Fajar.</li>
+                        <li><strong>Bumi:</strong> Tempat tinggal kita yang kaya akan air dan oksigen.</li>
+                        <li><strong>Mars:</strong> Planet Merah yang berdebu.</li>
+                        <li><strong>Yupiter:</strong> Planet terbesar di Tata Surya kita.</li>
+                        <li><strong>Saturnus:</strong> Planet indah yang memiliki cincin es menakjubkan.</li>
+                        <li><strong>Uranus & Neptunus:</strong> Planet raksasa es yang dingin.</li>
+                    </ul>
+                    <p class="mt-4">
+                        Matahari memberikan energi cahaya dan panas yang memungkinkan tumbuhan tumbuh, air mengalir, dan manusia bisa hidup dengan nyaman di Bumi.
+                    </p>
+                `
+            },
+            {
+                id: 3,
+                title: "Komik Pahlawan Cilik Pemilah Sampah",
+                category: "komik",
+                categoryLabel: "Komik Edukasi",
+                badgeColor: "bg-edu-green-600",
+                author: "Tim Peduli Lingkungan",
+                readTime: "2 Menit",
+                rating: 4,
+                cover: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=600&q=80",
+                snippet: "Belajar membedakan sampah Organik, Anorganik, dan B3 lewat petualangan seru Dito dan Rina.",
+                content: `
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-200">
+                            <span class="text-xs font-bold text-amber-700 uppercase">Panel 1 - Di Halaman Sekolah</span>
+                            <p class="text-sm font-bold text-slate-800 mt-1">Dito: "Wah, kenapa banyak botol plastik berserakan di bawah pohon?"</p>
+                        </div>
+                        <div class="p-4 bg-sky-50 rounded-2xl border-2 border-sky-200">
+                            <span class="text-xs font-bold text-sky-700 uppercase">Panel 2 - Penjelasan Rina</span>
+                            <p class="text-sm font-bold text-slate-800 mt-1">Rina: "Botol plastik itu sampah Anorganik, Dito! Tidak bisa membusuk dengan cepat. Kita harus membuangnya ke tempat sampah warna kuning!"</p>
+                        </div>
+                        <div class="p-4 bg-emerald-50 rounded-2xl border-2 border-emerald-200">
+                            <span class="text-xs font-bold text-emerald-700 uppercase">Panel 3 - Aksi Bersama</span>
+                            <p class="text-sm font-bold text-slate-800 mt-1">Dito & Rina: "Ayo kita pila sampah! Tempat Sampah Hijau untuk sisa makanan (Organik), dan Kuning untuk Plastik!"</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Legenda Danau Toba & Pesan Kebaikan",
+                category: "fiksi",
+                categoryLabel: "Fiksi & Dongeng",
+                badgeColor: "bg-amber-500",
+                author: "Cerita Rakyat Sumatra",
+                readTime: "5 Menit",
+                rating: 5,
+                cover: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+                snippet: "Kisah Toba dan ikan mas ajaib yang menjadi asal mula Danau Toba nan megah di Sumatra Utara.",
+                content: `
+                    <p class="first-letter:text-4xl first-letter:font-extrabold first-letter:text-edu-blue-600 first-letter:float-left first-letter:mr-2">
+                        Di sebuah desa di Sumatra Utara, hiduplah seorang pemuda bernama Toba. Suatu hari, saat memancing di sungai, Toba menangkap seekor ikan mas yang sangat besar dan indah bersisik emas.
+                    </p>
+                    <p>
+                        Betapa terkejutnya Toba ketika ikan mas tersebut berubah menjadi seorang wanita cantik. Wanita itu berjanji menjadi istri Toba dengan satu syarat mutlak: Toba tidak boleh pernah menceritakan asal-usulnya yang berasal dari seekor ikan.
+                    </p>
+                    <p>
+                        Tahun demi tahun berlalu, mereka dikaruniai seorang anak bernama Samosir. Suatu hari, Samosir diminta mengantar makanan untuk ayahnya di ladang. Namun karena lapar, Samosir memakan sebagian makanan tersebut di tengah jalan.
+                    </p>
+                    <p>
+                        Toba yang sangat lapar dan marah melupakan janjinya. Ia berteriak: <em>"Dasar anak keturunan ikan!"</em>. Seketika itu langit menjadi gelap, hujan deras turun tak henti-hentinya hingga menenggelamkan seluruh desa dan membentuk danau raksasa yang kini bernama <strong>Danau Toba</strong>.
+                    </p>
+                `
+            },
+            {
+                id: 5,
+                title: "Mengapa Burung Bisa Terbang Tinggi?",
+                category: "sains",
+                categoryLabel: "Sains & Pengetahuan",
+                badgeColor: "bg-edu-blue-600",
+                author: "Biologi Cilik",
+                readTime: "3 Menit",
+                rating: 4,
+                cover: "https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=600&q=80",
+                snippet: "Mengapa manusia tidak bisa terbang seperti burung? Rahasianya ada pada bentuk tulang dan bulunya!",
+                content: `
+                    <p>
+                        Pernahkah kamu membayangkan rasanya terbang bebas di angkasa seperti burung? Burung memiliki tubuh khusus yang diciptakan untuk bisa terbang dengan ringan.
+                    </p>
+                    <h4 class="font-bold text-slate-800 mt-3 font-heading">3 Rahasia Burung Bisa Terbang:</h4>
+                    <ol class="list-decimal list-inside space-y-2 text-slate-700 ml-2 mt-2">
+                        <li><strong>Tulang Berongga:</strong> Tulang burung sangat ringan karena memiliki rongga udara di dalamnya, tidak berat seperti tulang manusia.</li>
+                        <li><strong>Otot Dada yang Kuat:</strong> Burung memiliki otot dada besar untuk mengepakkan sayap berkali-kali.</li>
+                        <li><strong>Bentuk Sayap Aerodinamis:</strong> Sayap burung melengkung sehingga udara mengalir lebih cepat di atas sayap dan mendorong tubuhnya ke atas.</li>
+                    </ol>
+                `
+            },
+            {
+                id: 6,
+                title: "Audio Dongeng: Burung Cendrawasih yang Baik Hati",
+                category: "media",
+                categoryLabel: "Audio / Video Dongeng",
+                badgeColor: "bg-purple-600",
+                author: "Radio Cerita Anak",
+                readTime: "4 Menit Audio",
+                rating: 5,
+                cover: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80",
+                snippet: "Dengarkan rekaman suara cerita dongeng Burung Cendrawasih dari Papua yang suka berbagi.",
+                content: `
+                    <div class="bg-purple-50 p-6 rounded-2xl border border-purple-200 text-center space-y-4">
+                        <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto text-2xl shadow-lg">
+                            <i class="fa-solid fa-headphones"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-lg">Putar Pemutar Audio Dongeng</h4>
+                        <p class="text-xs text-slate-600">Klik tombol di bawah ini untuk mendengarkan narasi suara cerita.</p>
+                        
+                        <!-- Simulated Audio Player UI -->
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 max-w-md mx-auto flex items-center space-x-3">
+                            <button onclick="toggleAudioSim(this)" class="w-10 h-10 rounded-full bg-edu-blue-600 text-white flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-play text-sm"></i>
+                            </button>
+                            <div class="w-full">
+                                <div class="flex justify-between text-[10px] font-bold text-slate-500 mb-1">
+                                    <span id="audio-timer">00:00</span>
+                                    <span>03:45</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div id="audio-progress" class="bg-edu-blue-600 h-full w-0 transition-all duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 mt-4">
+                        Burung Cendrawasih dari hutan Papua yang indah selalu membagikan buah-buahan manis kepada hewan-hewan kecil yang kelaparan di musim kemarau.
+                    </p>
+                `
+            }
+        ];
+
+        // 2. INITIAL REVIEWS DATA
+        let reviewsData = [
+            {
+                name: "Rani Permata",
+                classGrade: "Kelas 4 SD",
+                bookTitle: "Misteri Rahasia Tata Surya",
+                summary: "Buku sains ini sangat seru! Saya baru tahu planet Saturnus punya cincin es yang sangat besar.",
+                moral: "Kita harus selalu kagum dan menjaga alam semesta ciptaan Tuhan.",
+                rating: 5,
+                date: "Baru saja"
+            },
+            {
+                name: "Doni Prasetyo",
+                classGrade: "Kelas 5 SD",
+                bookTitle: "Petualangan Si Kancil Cerdik",
+                summary: "Kancil menolong kerbau dari buaya jahat dengan cara yang pintar tanpa perlu berkelahi.",
+                moral: "Selalu gunakan akal sehat dan kebijaksanaan dalam membantu teman.",
+                rating: 5,
+                date: "1 jam yang lalu"
+            }
+        ];
+
+        // 3. INITIAL LEADERBOARD DATA
+        const leaderboardData = [
+            { rank: 1, name: "Ahmad Rifai", classGrade: "Kelas 5 SD", points: 1250, badge: "Master Kutu Buku 🏆" },
+            { rank: 2, name: "Siti Nurhaliza", classGrade: "Kelas 4 SD", points: 980, badge: "Penulis Cilik ✍️" },
+            { rank: 3, name: "Budi Santoso", classGrade: "Kelas 6 SD", points: 850, badge: "Petualang Cerita 🚀" },
+            { rank: 4, name: "Dewi Lestari", classGrade: "Kelas 3 SD", points: 720, badge: "Pembaca Setia ⭐" }
+        ];
+
+        // STATE VARIABLES
+        let currentRating = 5;
+        let currentFontSize = 16;
+        let activeBookForJournal = "";
+        let userPoints = 150;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderBooks(booksData);
+            renderReviews();
+            renderLeaderboard();
+            setRating(5);
+        });
+
+        // RENDER BOOKS GRID
+        function renderBooks(books) {
+            const grid = document.getElementById('book-grid');
+            const noBooks = document.getElementById('no-books-found');
+            grid.innerHTML = '';
+
+            if (books.length === 0) {
+                noBooks.classList.remove('hidden');
+                return;
+            } else {
+                noBooks.classList.add('hidden');
+            }
+
+            books.forEach(book => {
+                const starsHTML = generateStars(book.rating);
+                const cardHTML = `
+                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
+                        <!-- Cover Image with Badge -->
+                        <div class="relative h-48 overflow-hidden bg-slate-100">
+                            <img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 ${book.badgeColor} text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                                ${book.categoryLabel}
+                            </span>
+                            <div class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-lg flex items-center space-x-1">
+                                <i class="fa-solid fa-clock text-amber-400"></i>
+                                <span>${book.readTime}</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <div class="flex items-center space-x-1 text-amber-400 text-xs mb-1">
+                                    ${starsHTML}
+                                    <span class="text-slate-400 text-[10px] font-bold ml-1">(${book.rating}.0)</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-800 line-clamp-2 font-heading group-hover:text-edu-blue-600 transition-colors">
+                                    ${book.title}
+                                </h3>
+                                <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                                    ${book.snippet}
+                                </p>
+                            </div>
+
+                            <!-- Card Footer CTA -->
+                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                                <span class="text-[11px] font-semibold text-slate-400">
+                                    <i class="fa-solid fa-user-pen mr-1"></i>${book.author}
+                                </span>
+                                <button onclick="openReaderModal(${book.id})" class="bg-edu-blue-50 hover:bg-edu-blue-600 text-edu-blue-700 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5">
+                                    <span>Baca Sekarang</span>
+                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        // GENERATE STAR ICONS
+        function generateStars(rating) {
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    html += `<i class="fa-solid fa-star"></i>`;
+                } else {
+                    html += `<i class="fa-regular fa-star text-slate-300"></i>`;
+                }
+            }
+            return html;
+        }
+
+        // FILTER CATEGORIES
+        function filterCategory(cat) {
+            // Update button styles
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-edu-blue-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+
+            const activeBtn = document.getElementById(`btn-cat-${cat}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
+                activeBtn.classList.add('bg-edu-blue-600', 'text-white', 'shadow-md');
+            }
+
+            if (cat === 'all') {
+                renderBooks(booksData);
+            } else {
+                const filtered = booksData.filter(b => b.category === cat);
+                renderBooks(filtered);
+            }
+        }
+
+        // SEARCH FUNCTIONALITY
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            if (!query) {
+                renderBooks(booksData);
+                return;
+            }
+            const results = booksData.filter(b => 
+                b.title.toLowerCase().includes(query) || 
+                b.snippet.toLowerCase().includes(query) ||
+                b.author.toLowerCase().includes(query)
+            );
+            renderBooks(results);
+        }
+
+        function quickSearch(keyword) {
+            document.getElementById('search-input').value = keyword;
+            handleSearch();
+            scrollToSection('koleksi');
+        }
+
+        // READER MODAL LOGIC
+        function openReaderModal(bookId) {
+            const book = booksData.find(b => b.id === bookId);
+            if (!book) return;
+
+            activeBookForJournal = book.title;
+
+            document.getElementById('modal-book-title').innerText = book.title;
+            document.getElementById('modal-category-badge').innerText = book.categoryLabel;
+            document.getElementById('modal-book-author').innerText = book.author;
+            document.getElementById('modal-read-time').innerText = book.readTime;
+            document.getElementById('modal-book-cover').src = book.cover;
+            document.getElementById('modal-text-content').innerHTML = book.content;
+
+            currentFontSize = 16;
+            document.getElementById('modal-text-content').style.fontSize = '16px';
+
+            document.getElementById('reader-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Lock background scroll
+        }
+
+        function closeReaderModal() {
+            document.getElementById('reader-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function adjustFontSize(delta) {
+            currentFontSize = Math.min(Math.max(12, currentFontSize + delta), 26);
+            document.getElementById('modal-text-content').style.fontSize = `${currentFontSize}px`;
+        }
+
+        function finishReadingAndOpenJournal() {
+            closeReaderModal();
+            document.getElementById('book-title-input').value = activeBookForJournal;
+            scrollToSection('jurnal');
+        }
+
+        // STAR RATING PICKER IN FORM
+        function setRating(rating) {
+            currentRating = rating;
+            const stars = document.querySelectorAll('#star-rating-picker i');
+            stars.forEach((s, idx) => {
+                if (idx < rating) {
+                    s.classList.remove('text-slate-300');
+                    s.classList.add('text-amber-400');
+                } else {
+                    s.classList.remove('text-amber-400');
+                    s.classList.add('text-slate-300');
+                }
+            });
+            document.getElementById('rating-label').innerText = `Bintang ${rating}/5`;
+        }
+
+        // HANDLE JOURNAL FORM SUBMIT
+        function handleJournalSubmit(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('student-name').value;
+            const classGrade = document.getElementById('student-class').value;
+            const bookTitle = document.getElementById('book-title-input').value;
+            const summary = document.getElementById('book-summary').value;
+            const moral = document.getElementById('book-moral').value;
+
+            // Add new review to array
+            const newReview = {
+                name: name,
+                classGrade: classGrade,
+                bookTitle: bookTitle,
+                summary: summary,
+                moral: moral,
+                rating: currentRating,
+                date: "Baru saja"
+            };
+
+            reviewsData.unshift(newReview);
+            renderReviews();
+
+            // Add points to user score
+            userPoints += 50;
+            document.getElementById('user-points-val').innerText = `${userPoints} Poin`;
+
+            // Reset Form
+            document.getElementById('journal-form').reset();
+            setRating(5);
+
+            // Show Celebration Modal
+            document.getElementById('success-modal').classList.remove('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            scrollToSection('papan-karya');
+        }
+
+        // RENDER REVIEWS FEED
+        function renderReviews() {
+            const feed = document.getElementById('reviews-feed');
+            feed.innerHTML = '';
+
+            reviewsData.forEach(r => {
+                const starsHTML = generateStars(r.rating);
+                const itemHTML = `
+                    <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow space-y-2">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-edu-blue-600 to-sky-400 text-white font-extrabold flex items-center justify-center text-xs">
+                                    ${r.name.charAt(0)}
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-slate-800">${r.name} <span class="text-slate-400 font-normal">(${r.classGrade})</span></div>
+                                    <div class="text-[10px] text-slate-400"><i class="fa-solid fa-book-bookmark mr-1"></i>Membaca: <strong>${r.bookTitle}</strong></div>
+                                </div>
+                            </div>
+                            <div class="text-amber-400 text-[10px]">
+                                ${starsHTML}
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            "${r.summary}"
+                        </p>
+                        <div class="text-[11px] text-edu-green-700 font-bold flex items-center space-x-1">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                            <span>Pesan Moral: ${r.moral}</span>
+                        </div>
+                    </div>
+                `;
+                feed.innerHTML += itemHTML;
+            });
+        }
+
+        // RENDER LEADERBOARD
+        function renderLeaderboard() {
+            const list = document.getElementById('leaderboard-list');
+            list.innerHTML = '';
+
+            leaderboardData.forEach(item => {
+                let rankBadge = `<span class="w-6 h-6 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold">${item.rank}</span>`;
+                if (item.rank === 1) rankBadge = `<span class="w-7 h-7 rounded-full bg-amber-400 text-slate-900 flex items-center justify-center text-xs font-black shadow">🥇</span>`;
+                if (item.rank === 2) rankBadge = `<span class="w-7 h-7 rounded-full bg-slate-300 text-slate-900 flex items-center justify-center text-xs font-black shadow">🥈</span>`;
+                if (item.rank === 3) rankBadge = `<span class="w-7 h-7 rounded-full bg-amber-700 text-white flex items-center justify-center text-xs font-black shadow">🥉</span>`;
+
+                const row = `
+                    <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-800/80 border border-slate-700 hover:border-slate-600 transition-all">
+                        <div class="flex items-center space-x-3">
+                            ${rankBadge}
+                            <div>
+                                <div class="text-xs font-bold text-slate-100">${item.name}</div>
+                                <div class="text-[10px] text-slate-400">${item.classGrade} • <span class="text-amber-300">${item.badge}</span></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs font-black text-amber-400">${item.points}</div>
+                            <div class="text-[9px] text-slate-400 uppercase font-bold">Poin</div>
+                        </div>
+                    </div>
+                `;
+                list.innerHTML += row;
+            });
+        }
+
+        // AUDIO SIMULATION TOGGLE
+        let audioPlaying = false;
+        function toggleAudioSim(btn) {
+            audioPlaying = !audioPlaying;
+            const icon = btn.querySelector('i');
+            const progress = document.getElementById('audio-progress');
+            const timer = document.getElementById('audio-timer');
+
+            if (audioPlaying) {
+                icon.className = 'fa-solid fa-pause text-sm';
+                progress.style.width = '65%';
+                timer.innerText = '02:24';
+            } else {
+                icon.className = 'fa-solid fa-play text-sm';
+                progress.style.width = '0%';
+                timer.innerText = '00:00';
+            }
+        }
+
+        // UTILITY FUNCTIONS
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
